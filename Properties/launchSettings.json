@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "quikbar (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "quikbar (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
