@@ -6,11 +6,13 @@
     xmlns:local="using:quikbar">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- App-wide typeface: bundled Geist (FontIcon keeps SymbolThemeFontFamily). -->
+            <FontFamily x:Key="ContentControlThemeFontFamily">ms-appx:///Assets/Fonts/Geist-Variable.ttf#Geist</FontFamily>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Other merged dictionaries here -->
+                <!-- Shared component styles -->
+                <ResourceDictionary Source="ms-appx:///Styles/LauncherStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <!-- Other app resources here -->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Chrome-stripping overrides for embedded "ghost" TextBox controls
+  (search bar, AI ask bar). Merge into the TextBox's own Resources so
+  the overrides stay scoped — do NOT merge at app level.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="TextControlBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="Transparent" />
+    <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Transparent" />
+    <SolidColorBrush x:Key="TextControlBorderBrushDisabled" Color="Transparent" />
+    <SolidColorBrush x:Key="TextControlBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="Transparent" />
+    <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Transparent" />
+    <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBoxBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBoxBorderBrushPointerOver" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBoxBorderBrushFocused" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBoxBorderBrushDisabled" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBoxBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBoxBackgroundPointerOver" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBoxBackgroundFocused" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBoxBackgroundDisabled" Color="Transparent" />
+    <SolidColorBrush x:Key="FocusVisualPrimaryBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="FocusVisualSecondaryBrush" Color="Transparent" />
+</ResourceDictionary>

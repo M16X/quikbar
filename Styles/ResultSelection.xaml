@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Accent-tinted selection for the launcher result lists.
+  Merge into a ListView's own Resources so the overrides stay scoped —
+  do NOT merge at app level. Follows the GhostTextBox.xaml pattern.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="{ThemeResource SystemAccentColor}" Opacity="0.16" />
+    <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="{ThemeResource SystemAccentColor}" Opacity="0.24" />
+    <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="{ThemeResource SystemAccentColor}" Opacity="0.32" />
+</ResourceDictionary>

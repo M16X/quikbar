@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window
+    x:Class="quikbar.SettingsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="quikbar Settings"
+    mc:Ignorable="d">
+
+    <Window.SystemBackdrop>
+        <DesktopAcrylicBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="SettingsCard" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="8" />
+            </Style>
+
+            <Style x:Key="PageTitle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Margin" Value="0,0,0,8" />
+            </Style>
+
+            <Style x:Key="SectionHeader" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Margin" Value="0,22,0,8" />
+            </Style>
+
+            <Style x:Key="RowTitle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="RowDesc" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+
+            <Style x:Key="RowIcon" TargetType="FontIcon">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Title bar (drag region via SetTitleBar) -->
+        <Grid x:Name="TitleBarRoot" Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="140" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="16,0,0,0" VerticalAlignment="Center" FontSize="14" Text="Settings" />
+        </Grid>
+
+        <!-- Body: sidebar + content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Sidebar -->
+            <Border Grid.Column="0" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0,0,1,0">
+                <StackPanel Padding="12,16" Spacing="2">
+                    <Grid Margin="10,0,10,20" ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Width="36" Height="36" Source="ms-appx:///Assets/Square44x44Logo.scale-200.png" />
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="1">
+                            <TextBlock FontWeight="SemiBold" Text="quikbar" />
+                            <TextBlock x:Name="VersionText" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Button x:Name="NavProvider" Height="40" Padding="12,0" BorderThickness="0" CornerRadius="6"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                            Background="{ThemeResource ControlFillColorDefaultBrush}"
+                            Foreground="{ThemeResource TextFillColorPrimaryBrush}" Click="Nav_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <FontIcon x:Name="NavProviderIcon" FontSize="16" Glyph="&#xE99A;" />
+                            <TextBlock x:Name="NavProviderLabel" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Text="AI Provider" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="NavLauncher" Height="40" Padding="12,0" BorderThickness="0" CornerRadius="6"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                            Background="Transparent"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" Click="Nav_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <FontIcon x:Name="NavLauncherIcon" FontSize="16" Glyph="&#xE78B;" />
+                            <TextBlock x:Name="NavLauncherLabel" VerticalAlignment="Center" FontSize="14" Text="Launcher" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="NavGeneration" Height="40" Padding="12,0" BorderThickness="0" CornerRadius="6"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                            Background="Transparent"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" Click="Nav_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <FontIcon x:Name="NavGenerationIcon" FontSize="16" Glyph="&#xE945;" />
+                            <TextBlock x:Name="NavGenerationLabel" VerticalAlignment="Center" FontSize="14" Text="Generation" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="NavAbout" Height="40" Padding="12,0" BorderThickness="0" CornerRadius="6"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                            Background="Transparent"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" Click="Nav_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <FontIcon x:Name="NavAboutIcon" FontSize="16" Glyph="&#xE946;" />
+                            <TextBlock x:Name="NavAboutLabel" VerticalAlignment="Center" FontSize="14" Text="About" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <!-- Content -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel MaxWidth="720" Padding="28,24,28,32" Spacing="0">
+
+                    <!-- ============ AI Provider ============ -->
+                    <StackPanel x:Name="PageProvider">
+                        <TextBlock Style="{StaticResource PageTitle}" Text="AI Provider" />
+                        <TextBlock Style="{StaticResource SectionHeader}" Text="Connection" />
+                        <Border Style="{StaticResource SettingsCard}">
+                            <StackPanel>
+                                <Grid Padding="16,14" ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE774;" />
+                                    <StackPanel Grid.Column="1" Spacing="3">
+                                        <TextBlock Style="{StaticResource RowTitle}" Text="Endpoint" />
+                                        <TextBlock Style="{StaticResource RowDesc}" Text="OpenAI-compatible base URL (OpenAI, Ollama, LM Studio, …)" />
+                                    </StackPanel>
+                                    <TextBox x:Name="EndpointBox" Grid.Column="2" Width="300" VerticalAlignment="Center" PlaceholderText="https://api.openai.com/v1" LostFocus="EndpointBox_LostFocus" />
+                                </Grid>
+                                <Border Height="1" Background="{ThemeResource CardStrokeColorDefaultBrush}" />
+                                <Grid Padding="16,14" ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE72E;" />
+                                    <StackPanel Grid.Column="1" Spacing="3">
+                                        <TextBlock Style="{StaticResource RowTitle}" Text="API key" />
+                                        <TextBlock Style="{StaticResource RowDesc}" Text="Stored locally in settings.json" />
+                                    </StackPanel>
+                                    <PasswordBox x:Name="ApiKeyBox" Grid.Column="2" Width="220" VerticalAlignment="Center" PlaceholderText="sk-…" LostFocus="ApiKeyBox_LostFocus" />
+                                </Grid>
+                                <Border Height="1" Background="{ThemeResource CardStrokeColorDefaultBrush}" />
+                                <Grid Padding="16,14" ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE768;" />
+                                    <StackPanel Grid.Column="1" Spacing="3">
+                                        <TextBlock Style="{StaticResource RowTitle}" Text="Test connection" />
+                                        <TextBlock x:Name="TestStatus" Style="{StaticResource RowDesc}" Text="Sends a short prompt to verify your endpoint and key" />
+                                    </StackPanel>
+                                    <Button x:Name="TestButton" Grid.Column="2" VerticalAlignment="Center" Click="TestButton_Click" Content="Test" Style="{StaticResource AccentButtonStyle}" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock Style="{StaticResource SectionHeader}" Text="Model" />
+                        <Border Style="{StaticResource SettingsCard}">
+                            <Grid Padding="16,14" ColumnSpacing="12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="24" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE8F2;" />
+                                <StackPanel Grid.Column="1" Spacing="3">
+                                    <TextBlock Style="{StaticResource RowTitle}" Text="Default model" />
+                                    <TextBlock x:Name="ModelsStatus" Style="{StaticResource RowDesc}" Text="Refresh to list models from your endpoint" />
+                                </StackPanel>
+                                <Grid Grid.Column="2" VerticalAlignment="Center" ColumnSpacing="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ComboBox x:Name="ModelBox" MinWidth="220" IsEditable="True" PlaceholderText="gpt-4o-mini" SelectionChanged="ModelBox_SelectionChanged" LostFocus="ModelBox_LostFocus" />
+                                    <Button x:Name="RefreshModelsButton" Grid.Column="1" Padding="10,5" Click="RefreshModelsButton_Click" ToolTipService.ToolTip="Refresh models">
+                                        <FontIcon FontSize="14" Glyph="&#xE72C;" />
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- ============ Launcher ============ -->
+                    <StackPanel x:Name="PageLauncher" Visibility="Collapsed">
+                        <TextBlock Style="{StaticResource PageTitle}" Text="Launcher" />
+                        <TextBlock Style="{StaticResource SectionHeader}" Text="General" />
+                        <Border Style="{StaticResource SettingsCard}">
+                            <StackPanel>
+                                <Grid Padding="16,14" ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE92E;" />
+                                    <StackPanel Grid.Column="1" Spacing="3">
+                                        <TextBlock Style="{StaticResource RowTitle}" Text="Global hotkey" />
+                                        <TextBlock Style="{StaticResource RowDesc}" Text="Show or hide the launcher from anywhere" />
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Alt+Space" />
+                                </Grid>
+                                <Border Height="1" Background="{ThemeResource CardStrokeColorDefaultBrush}" />
+                                <Grid Padding="16,14" ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE890;" />
+                                    <StackPanel Grid.Column="1" Spacing="3">
+                                        <TextBlock Style="{StaticResource RowTitle}" Text="Hide on focus lost" />
+                                        <TextBlock Style="{StaticResource RowDesc}" Text="Close the launcher when it loses focus" />
+                                    </StackPanel>
+                                    <ToggleSwitch x:Name="HideOnFocusLostToggle" Grid.Column="2" VerticalAlignment="Center" Toggled="HideOnFocusLostToggle_Toggled" />
+                                </Grid>
+                                <Border Height="1" Background="{ThemeResource CardStrokeColorDefaultBrush}" />
+                                <Grid Padding="16,14" ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE7E8;" />
+                                    <StackPanel Grid.Column="1" Spacing="3">
+                                        <TextBlock Style="{StaticResource RowTitle}" Text="Launch at startup" />
+                                        <TextBlock Style="{StaticResource RowDesc}" Text="Start quikbar in the background when you sign in" />
+                                    </StackPanel>
+                                    <ToggleSwitch x:Name="LaunchAtStartupToggle" Grid.Column="2" VerticalAlignment="Center" Toggled="LaunchAtStartupToggle_Toggled" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- ============ Generation ============ -->
+                    <StackPanel x:Name="PageGeneration" Visibility="Collapsed">
+                        <TextBlock Style="{StaticResource PageTitle}" Text="Generation" />
+                        <TextBlock Style="{StaticResource SectionHeader}" Text="Model behavior" />
+                        <Border Style="{StaticResource SettingsCard}">
+                            <StackPanel>
+                                <Grid Padding="16,14" ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE8B1;" />
+                                    <StackPanel Grid.Column="1" Spacing="3">
+                                        <TextBlock Style="{StaticResource RowTitle}" Text="Temperature" />
+                                        <TextBlock Style="{StaticResource RowDesc}" Text="Higher values make answers more random (0–2)" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                        <Slider x:Name="TempSlider" Width="180" Minimum="0" Maximum="2" StepFrequency="0.1" ValueChanged="TempSlider_ValueChanged" />
+                                        <TextBlock x:Name="TempValue" Width="28" VerticalAlignment="Center" Text="0.7" />
+                                    </StackPanel>
+                                </Grid>
+                                <Border Height="1" Background="{ThemeResource CardStrokeColorDefaultBrush}" />
+                                <StackPanel Padding="16,14" Spacing="10">
+                                    <Grid ColumnSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="24" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE8A5;" />
+                                        <StackPanel Grid.Column="1" Spacing="3">
+                                            <TextBlock Style="{StaticResource RowTitle}" Text="System prompt" />
+                                            <TextBlock Style="{StaticResource RowDesc}" Text="Sent to the model with every AI answer" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <TextBox x:Name="SystemPromptBox" AcceptsReturn="True" MinHeight="80" TextWrapping="Wrap" LostFocus="SystemPromptBox_LostFocus" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- ============ About ============ -->
+                    <StackPanel x:Name="PageAbout" Visibility="Collapsed">
+                        <TextBlock Style="{StaticResource PageTitle}" Text="About" />
+                        <StackPanel Margin="0,4,0,0" Orientation="Horizontal" Spacing="16">
+                            <Image Width="56" Height="56" Source="ms-appx:///Assets/Square44x44Logo.scale-200.png" />
+                            <StackPanel VerticalAlignment="Center" Spacing="3">
+                                <TextBlock FontWeight="SemiBold" Text="quikbar" />
+                                <TextBlock Style="{StaticResource RowDesc}" Text="Background launcher — Alt+Space or the tray icon." />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <TextBlock Style="{StaticResource SectionHeader}" Text="Storage" />
+                        <Border Style="{StaticResource SettingsCard}">
+                            <Grid Padding="16,14" ColumnSpacing="12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="24" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Style="{StaticResource RowIcon}" Glyph="&#xE8B7;" />
+                                <StackPanel Grid.Column="1" Spacing="3">
+                                    <TextBlock Style="{StaticResource RowTitle}" Text="Settings file" />
+                                    <TextBlock Style="{StaticResource RowDesc}" Text="%AppData%\quikbar\settings.json" />
+                                </StackPanel>
+                                <Button Grid.Column="2" VerticalAlignment="Center" Click="OpenFolderButton_Click" Content="Open folder" />
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

@@ -14,6 +14,8 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <!-- Exclude the unit-test project nested in this folder from the app build. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);quikbar.Tests/**/*</DefaultItemExcludes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +28,8 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\AppIcon.ico" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\Fonts\Geist-Variable.ttf" />
+    <Content Include="Assets\Fonts\GeistMono-Variable.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +42,7 @@
     package has not yet been restored.
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
-    <ProjectCapability Include="Msix"/>
+    <ProjectCapability Include="Msix" />
   </ItemGroup>
 
   <!--
@@ -50,6 +54,7 @@
     <PropertyGroup> above to opt out.
   -->
   <ItemGroup>
+    <PackageReference Include="H.NotifyIcon.WinUI" Version="2.3.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="*" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="*" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools.WinApp" Version="*" />

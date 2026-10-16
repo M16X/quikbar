@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>quikbar.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- Link pure-logic sources from the app (no WinUI/WinAppSDK refs needed). -->
+  <ItemGroup>
+    <Compile Include="..\Services\CalculatorService.cs" Link="Linked\CalculatorService.cs" />
+    <Compile Include="..\Services\CurrencyParser.cs" Link="Linked\CurrencyParser.cs" />
+    <Compile Include="..\Services\CurrencyService.cs" Link="Linked\CurrencyService.cs" />
+    <Compile Include="..\Services\ChatStore.cs" Link="Linked\ChatStore.cs" />
+    <Compile Include="..\Services\AppFonts.cs" Link="Linked\AppFonts.cs" />
+    <Compile Include="..\Services\ConversationView.cs" Link="Linked\ConversationView.cs" />
+    <Compile Include="..\Services\EnterActionResolver.cs" Link="Linked\EnterActionResolver.cs" />
+    <Compile Include="..\Services\DictionaryService.cs" Link="Linked\DictionaryService.cs" />
+    <Compile Include="..\Services\LauncherCommands.cs" Link="Linked\LauncherCommands.cs" />
+    <Compile Include="..\Services\SettingsStore.cs" Link="Linked\SettingsStore.cs" />
+    <Compile Include="..\Models\AppSettings.cs" Link="Linked\AppSettings.cs" />
+    <Compile Include="..\Models\CurrencyModels.cs" Link="Linked\CurrencyModels.cs" />
+    <Compile Include="..\Models\ChatAndDictionaryModels.cs" Link="Linked\ChatAndDictionaryModels.cs" />
+  </ItemGroup>
+
+</Project>
